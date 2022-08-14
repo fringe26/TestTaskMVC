@@ -64,18 +64,7 @@ namespace TestTaskMVC.PL.Controllers
 
 
 
-        //[BindProperty]
-        //public ClientVM ClientVm { get; set; }
-        //public ClientController(ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-
-        //[HttpGet]
-        //public IActionResult AllClients()
-        //{
-        //    return View();
-        //}
+        
 
         [HttpGet]
         public async Task<IActionResult> CreateClient(int? id)
@@ -88,7 +77,7 @@ namespace TestTaskMVC.PL.Controllers
 
 
 
-        //#region Api Calls
+        // Api Calls
         [HttpGet("/Client/GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -102,19 +91,7 @@ namespace TestTaskMVC.PL.Controllers
             return View(client);
         }
 
-        //[HttpDelete("/client/delete{id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var bookFromDb = await _context.Clients.FindAsync(id);
-        //    if (bookFromDb == null)
-        //    {
-        //        return Json(new { success = false, message = "Error while Deleting" });
-        //    }
-        //    _context.Clients.Remove(bookFromDb);
-        //    await _context.SaveChangesAsync();
-        //    return Json(new { success = true, message = "Deleted Successful" });
-        //}
-        //#endregion
+       
     }
 }
 
