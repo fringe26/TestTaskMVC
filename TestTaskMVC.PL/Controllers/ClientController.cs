@@ -29,7 +29,7 @@ namespace TestTaskMVC.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateClient()
+        public async Task<IActionResult> CreateClient()
         {
             if (!ModelState.IsValid) return View();
             Client client = new Client
@@ -39,12 +39,21 @@ namespace TestTaskMVC.PL.Controllers
                 Email = Client.Email,
                 Company = Client.Company,
                 Phone = Client.Phone,
+                Adress = new Adress
+                {
+                    Country = Client.Country,
+                    City = Client.City,
+                    PostalIndex=Client.PostalIndex,
+                    Street=Client.Street
+
+                } 
                
             };
            
+           
             
             
-            _clientService.AddClient(client);
+            await _clientService.AddClient(client);
              
                 
              return RedirectToAction("AllClients");
@@ -69,7 +78,7 @@ namespace TestTaskMVC.PL.Controllers
         //}
 
         [HttpGet]
-        public async Task<IActionResult> CreateClient(int id=0)
+        public async Task<IActionResult> CreateClient(int? id)
         {
             Client = new ClientVM();
            
@@ -86,7 +95,26 @@ namespace TestTaskMVC.PL.Controllers
             return Json(new { data = await _clientService.GetAllClients() });
         }
 
-      
+       
+        public async Task<IActionResult> Details(int id)
+        {
+            var client = await _clientService.GetClient(id);
+            return View(client);
+        }
+
+        //[HttpDelete("/client/delete{id}")]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var bookFromDb = await _context.Clients.FindAsync(id);
+        //    if (bookFromDb == null)
+        //    {
+        //        return Json(new { success = false, message = "Error while Deleting" });
+        //    }
+        //    _context.Clients.Remove(bookFromDb);
+        //    await _context.SaveChangesAsync();
+        //    return Json(new { success = true, message = "Deleted Successful" });
+        //}
+        //#endregion
     }
 }
 

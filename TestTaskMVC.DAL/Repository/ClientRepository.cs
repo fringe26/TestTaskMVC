@@ -29,7 +29,7 @@ namespace TestTaskMVC.DAL.Repository
         {
             try
             {
-                item.AdressId = 2;
+                item.AdressId = item.Adress.Id;
                 await _context.Clients.AddAsync(item);
                 await _context.SaveChangesAsync();
                 return true;

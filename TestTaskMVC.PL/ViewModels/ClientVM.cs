@@ -18,5 +18,18 @@ namespace TestTaskMVC.PL.ViewModels
 
         [Required]
         public string Phone { get; set; }
+        [Required]
+
+        public string Country { get; set; }
+        [Required]
+
+        public string City { get; set; }
+        [Required]
+
+        public string Street { get; set; }
+        [Required]
+
+        public string PostalIndex { get; set; }
+        
     }
 }

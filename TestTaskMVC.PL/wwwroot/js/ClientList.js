@@ -18,8 +18,8 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                        <a href="/client/patch?id=${data}" class='btn btn-success text-white' style='cursor:pointer; width:70px;'>
-                            Edit
+                        <a href="/Client/Details?id=${data}" class='btn btn-success text-white' style='cursor:pointer; width:70px;'>
+                            Details
                         </a>
                         &nbsp;
                         <a class='btn btn-danger text-white' style='cursor:pointer; width:70px;'
