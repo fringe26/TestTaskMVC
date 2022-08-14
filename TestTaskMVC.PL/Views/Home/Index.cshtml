@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CommonLayout.cshtml";
+   
+}
+
+<div class="p-0 m-0 vh-100">
+
+    <div class="d-flex justify-content-center align-items-center h-50">
+        <h1 class="text-info display-1 text-center">WElCOME TO CLIENT SERVICE</h1>
+    </div>
+    <div class="d-flex justify-content-around my-1">
+        <div class="col-3">
+            <a asp-action="Registration" asp-controller="Account" class="btn btn-success form-control text-white">
+                Sign Up
+            </a>
+        </div>
+        <div class="col-3">
+            <a asp-action="Login" asp-controller="Account" class="btn btn-info form-control text-white">
+                Sign In
+            </a>
+            
+        </div>
+    </div>
+
+</div>
