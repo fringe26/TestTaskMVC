@@ -51,7 +51,7 @@ namespace TestTaskMVC.PL.Controllers
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
             var link = Url.Action(nameof(VerifyEmail), "Account", new { userId = appUser.Id, token = code }, Request.Scheme, Request.Host.ToString());
             string html = $" Click Here {link}";
-            await _emailService.SendEmailAsync(registerVM.Email, null, html, null);
+            await _emailService.SendEmailAsync(appUser, html, null);
             return RedirectToAction(nameof(SendVerifyEmail));
         }
 
@@ -134,7 +134,7 @@ namespace TestTaskMVC.PL.Controllers
             var link = Url.Action(nameof(ResetPassword), "Account", new { email = user.Email, token = code }, Request.Scheme, Request.Host.ToString());
             string html = $"{link}";
             string content = "Reset Password";
-            await _emailService.SendEmailAsync(user.Email, user.UserName, html, content);
+            await _emailService.SendEmailAsync(user, html, content);
             return RedirectToAction(nameof(RecoverPasswordView));
         }
 

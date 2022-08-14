@@ -12,8 +12,8 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "title", "width": "20%" },
-            { "data": "author", "width": "20%" },
+            { "data": "name", "width": "20%" },
+            { "data": "surname", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {

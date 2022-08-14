@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TestTaskMVC.DomainModels.Models;
 
-namespace TestTaskMVC.BL.Interfaces
+namespace TestTaskMVC.DAL.IRepository
 {
-    public interface IEmailService
+    public interface IClientRepository:IRepository<Client>
     {
-        Task SendEmailAsync(AppUser appUser, string html, string content);
     }
 }

@@ -9,19 +9,19 @@ namespace TestTaskMVC.BL.Services
     public class EmailService : IEmailService
     {
         private readonly EmailConfiguration _emailConfiguration;
-        private readonly UserManager<AppUser> _userManager;
+    
 
 
-        public EmailService(EmailConfiguration config, UserManager<AppUser> userManager)
+        public EmailService(EmailConfiguration config)
         {
             _emailConfiguration = config;
-            _userManager = userManager;
+        
         }
-        public async Task SendEmailAsync(string mail, string username, string html, string content)
+        public async Task SendEmailAsync(AppUser appUser, string html, string content)
         {
             
             
-            AppUser appUser = await _userManager.FindByEmailAsync(mail);
+           
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(_emailConfiguration.Title, _emailConfiguration.From));

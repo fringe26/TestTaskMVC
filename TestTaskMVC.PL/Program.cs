@@ -9,6 +9,8 @@ using System;
 using System.Configuration;
 using TestTaskMVC.BL.Services;
 using TestTaskMVC.BL.Interfaces;
+using TestTaskMVC.DAL.IRepository;
+using TestTaskMVC.DAL.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,15 @@ builder.Services.AddMvcCore().AddNewtonsoftJson(options => options.SerializerSet
                 = ReferenceLoopHandling.Ignore);
 
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "_myAllowCors",
+                      policy =>
+                      {
+                          policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                     
+                      });
+});
 
 
 builder.Services.AddIdentity<AppUser,IdentityRole>(options =>
@@ -43,6 +54,9 @@ builder.Services.AddIdentity<AppUser,IdentityRole>(options =>
 }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddScoped<IClientService,ClientService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
 
 builder.Services.AddSingleton(builder.Configuration
         .GetSection("EmailConfiguration")
@@ -62,7 +76,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseCors("_myAllowCors");
 app.UseAuthorization();
 
 app.MapControllerRoute(

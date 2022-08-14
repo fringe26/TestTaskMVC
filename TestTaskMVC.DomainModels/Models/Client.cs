@@ -15,7 +15,7 @@ namespace TestTaskMVC.DomainModels.Models
 
         public string Email { get; set; }
         public string Phone { get; set; }
-        public int AdressId { get; set; }
+        public int? AdressId { get; set; }
         public Adress Adress { get; set; }
 
     }
